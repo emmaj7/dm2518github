@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="task1.css"/>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <div data-map-wrapper id="map-canvas" class="map__wrapper"></div>
+    <script>
+    function openWindow(){
+      var browser=navigator.appName;
+      if (browser==”Google Chrome”)
+      {
+      window.opener=self;
+
+      }
+      window.open(‘task1.html’,'null’,'width=900,height=750,
+      toolbar=no,scrollbars=no,location=no,resizable =yes’);
+      window.moveTo(0,0);
+      window.resizeTo(screen.width,screen.height-100);
+      self.close();
+      }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=openWindow"
+    async defer></script>
+  </body>
+</html>

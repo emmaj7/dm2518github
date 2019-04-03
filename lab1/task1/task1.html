@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="task1.css"/>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="icon" type="image" href="https://i.pinimg.com/originals/d9/6f/da/d96fda627245ba6de5338be3d13970da.jpg"> </link>
+  </head>
+  <body>
+    <div data-map-wrapper id="map-canvas" class="map__wrapper"></div>
+    <script>
+      // var map;
+      // function initMap() {
+      //   map = new google.maps.Map(document.getElementById('map'), {
+      //     center: {lat: 59.3498092, lng: 18.0684758},
+      //     zoom: 18,
+      //     mapTypeId: 'hybrid',
+      //     tilt: 45,
+      //     gestureHandling: 'none',
+      //     zoomControl: false,
+      //     zoomControlOptions: {
+      //         position: google.maps.ControlPosition.LEFT_CENTER
+      //     }
+      //
+      //   });
+      //
+      // }
+
+      function customZoomControl( map ) {
+        var controlDiv, controlWrapper, zoomInButton, zoomOutButton;
+        console.log("hej");
+        // Creating divs for custom zoom control
+        controlDiv = document.createElement('div');
+        controlDiv.className = 'zoom__controls';
+
+        // Set Class for the control wrapper
+        controlWrapper = document.createElement('div');
+        controlWrapper.className = 'controls__wrapper';
+
+
+        // Set Class for the zoomIn
+        zoomInButton = document.createElement('button');
+        zoomInButton.className = 'controls--zoom-in';
+
+        // Set Class for the zoomOut
+        zoomOutButton = document.createElement('button');
+        zoomOutButton.className = 'controls--zoom-out';
+
+        plusSign = document.createTextNode("+");
+        minusSign = document.createTextNode("-");
+
+        forwardButton = document.createElement('button');
+        forwardButton.className = "controls--panning";
+
+        forwardSign = document.createTextNode("^");
+
+        backButton = document.createElement('button');
+        backButton.className = "controls--panning";
+
+        backSign = document.createTextNode("v");
+
+        leftButton = document.createElement('button');
+        leftButton.className = "controls--panning";
+
+        leftSign = document.createTextNode("<");
+
+        rightButton = document.createElement('button');
+        rightButton.className = "controls--panning";
+
+        rightSign = document.createTextNode(">");
+
+
+        // Append Children
+        controlDiv.appendChild(controlWrapper);
+        controlWrapper.appendChild(zoomInButton);
+        controlWrapper.appendChild(zoomOutButton);
+        controlWrapper.appendChild(forwardButton);
+        controlWrapper.appendChild(backButton);
+        controlWrapper.appendChild(leftButton);
+        controlWrapper.appendChild(rightButton);
+        zoomInButton.appendChild(plusSign);
+        zoomOutButton.appendChild(minusSign);
+        forwardButton.appendChild(forwardSign);
+        backButton.appendChild(backSign);
+        leftButton.appendChild(leftSign);
+        rightButton.appendChild(rightSign);
+
+        // Setup the click event listener - zoomIn
+        google.maps.event.addDomListener(zoomInButton, 'click', function() {
+          map.setZoom(map.getZoom() + 1);
+        });
+
+        // Setup the click event listener - zoomOut
+        google.maps.event.addDomListener(zoomOutButton, 'click', function() {
+          map.setZoom(map.getZoom() - 1);
+        });
+
+        google.maps.event.addDomListener(forwardButton, 'click', function() {
+          map.setCenter({lat: map.getCenter().lat() + 0.001, lng: map.getCenter().lng()});
+        });
+
+        google.maps.event.addDomListener(backButton, 'click', function() {
+          map.setCenter({lat: map.getCenter().lat() - 0.001, lng: map.getCenter().lng()});
+        });
+
+        google.maps.event.addDomListener(leftButton, 'click', function() {
+          map.setCenter({lat: map.getCenter().lat(), lng: map.getCenter().lng() - 0.001});
+        });
+
+        google.maps.event.addDomListener(rightButton, 'click', function() {
+          map.setCenter({lat: map.getCenter().lat(), lng: map.getCenter().lng() + 0.001});
+        });
+
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+      }
+
+      function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+
+
+      function initialize() {
+
+        var mapDiv, mapOptions, zoomControlDiv, map;
+
+        var mapDiv = document.getElementById('map-canvas');
+
+        mapOptions = {
+          center: {lat: 59.3498092, lng: 18.0684758},
+          zoom: 18,
+          mapTypeId: 'hybrid',
+          tilt: 45,
+          gestureHandling: 'none',
+          // zoomControl: false,
+          disableDefaultUI: true,
+          zoomControlOptions: {
+              position: google.maps.ControlPosition.LEFT_CENTER
+          }
+        }
+
+        map = new google.maps.Map(mapDiv, mapOptions);
+
+        marker = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          position: {lat: 59.3498092, lng: 18.0684758}
+        });
+
+        marker.addListener('click', toggleBounce);
+
+        customZoomControl( map );
+      }
+      initialize();
+
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initialize"
+    async defer></script>
+  </body>
+</html>
