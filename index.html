@@ -7,6 +7,7 @@
     <meta charset="utf-8"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
     <link rel="icon" type="image" href="https://i.pinimg.com/originals/d9/6f/da/d96fda627245ba6de5338be3d13970da.jpg"> </link>
+    <link rel="apple-touch-icon" type="image" href="https://i.pinimg.com/originals/d9/6f/da/d96fda627245ba6de5338be3d13970da.jpg"> </link>
   </head>
   <body>
     <div data-map-wrapper id="map-canvas" class="map__wrapper"></div>
@@ -154,6 +155,15 @@
         });
 
         marker.addListener('click', toggleBounce);
+
+        marker2 = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          position: {lat: 59.3498102, lng: 18.0684758}
+        });
+
+        marker2.addListener('click', toggleBounce);
 
         customZoomControl( map );
       }
