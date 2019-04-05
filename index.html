@@ -210,6 +210,16 @@
 
         mickisPlace.setDraggable(false);
 
+        mickisString = "<p> Välkommen hit, välkommen hem! </p>";
+
+        var mickisInfoWindow = new google.maps.InfoWindow({
+          content: mickisString
+        });
+
+        mickisPlace.addListener('click', function() {
+          mickisInfoWindow.open(map, mickisPlace);
+        });
+
         elnasPlace = new google.maps.Marker({
           map: map,
           draggable: false,
@@ -218,6 +228,16 @@
         });
 
         elnasPlace.setDraggable(false);
+
+        elnaString = "<p> Här har Harry Potter bott ish. </p>";
+
+        var elnasInfoWindow = new google.maps.InfoWindow({
+          content: elnaString
+        });
+
+        elnasPlace.addListener('click', function() {
+          elnasInfoWindow.open(map, elnasPlace);
+        });
 
         customZoomControl( map );
       }
