@@ -191,6 +191,16 @@
 
         emmasPlace.setDraggable(false);
 
+        emmaString = "<p> Metropolen, Skövde, is the place to be. </p>";
+
+        var emmasInfoWindow = new google.maps.InfoWindow({
+          content: emmaString
+        });
+
+        emmasPlace.addListener('click', function() {
+          emmasInfoWindow.open(map, emmasPlace);
+        });
+
         mickisPlace = new google.maps.Marker({
           map: map,
           draggable: false,
