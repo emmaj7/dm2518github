@@ -12,26 +12,9 @@
   <body>
     <div data-map-wrapper id="map-canvas" class="map__wrapper"></div>
     <script>
-      // var map;
-      // function initMap() {
-      //   map = new google.maps.Map(document.getElementById('map'), {
-      //     center: {lat: 59.3498092, lng: 18.0684758},
-      //     zoom: 18,
-      //     mapTypeId: 'hybrid',
-      //     tilt: 45,
-      //     gestureHandling: 'none',
-      //     zoomControl: false,
-      //     zoomControlOptions: {
-      //         position: google.maps.ControlPosition.LEFT_CENTER
-      //     }
-      //
-      //   });
-      //
-      // }
 
       function customZoomControl( map ) {
-        var controlDiv, controlWrapper, zoomInButton, zoomOutButton;
-        console.log("hej");
+        var controlDiv, controlWrapper, zoomInButton, zoomOutButton, placesDiv, placesRow;
         // Creating divs for custom zoom control
         controlDiv = document.createElement('div');
         controlDiv.className = 'zoom__controls';
@@ -115,6 +98,39 @@
         });
 
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+
+        placesDiv = document.createElement('div');
+        controlDiv.className = 'favPlaces';
+
+        placesRow = document.createElement('div');
+        controlDiv.className = 'row';
+
+        //Här är favoritplats knapparna
+        emmasButton = document.createElement('button');
+        zoomInButton.className = 'placesButton';
+
+        emmasName = document.createTextNode("Emmas place");
+
+        mickisButton = document.createElement('button');
+        zoomInButton.className = 'placesButton';
+
+        mickisName = document.createTextNode("Mickis place");
+
+        elnasButton = document.createElement('button');
+        zoomInButton.className = 'placesButton';
+
+        elnasName = document.createTextNode("Elnas place");
+
+        placesDiv.appendChild(placesRow);
+        placesRow.appendChild(emmasButton);
+        placesRow.appendChild(mickisButton);
+        placesRow.appendChild(elnasButton);
+        emmasButton.appendChild(emmasName);
+        mickisButton.appendChild(mickisName);
+        elnasButton.appendChild(elnasName);
+
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(placesDiv);
+        
       }
 
       function toggleBounce() {
