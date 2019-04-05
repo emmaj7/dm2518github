@@ -97,8 +97,6 @@
           map.setCenter({lat: map.getCenter().lat(), lng: map.getCenter().lng() + 0.01});
         });
 
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
-
         placesDiv = document.createElement('div');
         controlDiv.className = 'favPlaces';
 
@@ -130,7 +128,8 @@
         elnasButton.appendChild(elnasName);
 
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(placesDiv);
-        
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+
       }
 
       function toggleBounce() {
