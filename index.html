@@ -25,7 +25,7 @@
 
         // Set Class for the zoomIn
         zoomInButton = document.createElement('button');
-        zoomInButton.className = 'controls--zoom-in row';
+        zoomInButton.className = 'controls--zoom-in';
 
         // Set Class for the zoomOut
         zoomOutButton = document.createElement('button');
@@ -137,7 +137,7 @@
         google.maps.event.addDomListener(elnasButton, 'click', function() {
           map.setCenter({lat: 54.939196, lng: -3.929788});
         });
-        
+
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(placesDiv);
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
 
