@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="task1.css"/>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link rel="icon" type="image" href="https://i.pinimg.com/originals/d9/6f/da/d96fda627245ba6de5338be3d13970da.jpg"> </link>
+    <link rel="apple-touch-icon" type="image" href="https://i.pinimg.com/originals/d9/6f/da/d96fda627245ba6de5338be3d13970da.jpg"> </link>
+  </head>
+  <body>
+    <div data-map-wrapper id="map-canvas" class="map__wrapper"></div>
+    <script>
+
+      function customZoomControl( map ) {
+        var controlDiv, controlWrapper, zoomInButton, zoomOutButton, placesDiv, placesRow;
+        // Creating divs for custom zoom control
+        controlDiv = document.createElement('div');
+        controlDiv.className = 'zoom__controls';
+
+        // Set Class for the control wrapper
+        controlWrapper = document.createElement('div');
+        controlWrapper.className = 'controls__wrapper';
+
+        // Set Class for the zoomIn
+        zoomInButton = document.createElement('button');
+        zoomInButton.className = 'controls--zoom-in';
+
+        // Set Class for the zoomOut
+        zoomOutButton = document.createElement('button');
+        zoomOutButton.className = 'controls--zoom-out';
+
+        plusSign = document.createTextNode("+");
+        minusSign = document.createTextNode("-");
+
+        forwardButton = document.createElement('button');
+        forwardButton.className = "controls--panning";
+
+        forwardSign = document.createTextNode("^");
+
+        backButton = document.createElement('button');
+        backButton.className = "controls--panning";
+
+        backSign = document.createTextNode("v");
+
+        leftButton = document.createElement('button');
+        leftButton.className = "controls--panning";
+
+        leftSign = document.createTextNode("<");
+
+        rightButton = document.createElement('button');
+        rightButton.className = "controls--panning";
+
+        rightSign = document.createTextNode(">");
+
+
+        // Append Children
+        controlDiv.appendChild(controlWrapper);
+        controlWrapper.appendChild(zoomInButton);
+        controlWrapper.appendChild(zoomOutButton);
+        controlWrapper.appendChild(forwardButton);
+        controlWrapper.appendChild(backButton);
+        controlWrapper.appendChild(leftButton);
+        controlWrapper.appendChild(rightButton);
+        zoomInButton.appendChild(plusSign);
+        zoomOutButton.appendChild(minusSign);
+        forwardButton.appendChild(forwardSign);
+        backButton.appendChild(backSign);
+        leftButton.appendChild(leftSign);
+        rightButton.appendChild(rightSign);
+
+        // Setup the click event listener - zoomIn
+        google.maps.event.addDomListener(zoomInButton, 'click', function() {
+          map.setZoom(map.getZoom() + 1);
+        });
+
+        // Setup the click event listener - zoomOut
+        google.maps.event.addDomListener(zoomOutButton, 'click', function() {
+          map.setZoom(map.getZoom() - 1);
+        });
+
+        google.maps.event.addDomListener(forwardButton, 'click', function() {
+          map.setCenter({lat: map.getCenter().lat() + 0.01, lng: map.getCenter().lng()});
+        });
+
+        google.maps.event.addDomListener(backButton, 'click', function() {
+          map.setCenter({lat: map.getCenter().lat() - 0.01, lng: map.getCenter().lng()});
+        });
+
+        google.maps.event.addDomListener(leftButton, 'click', function() {
+          map.setCenter({lat: map.getCenter().lat(), lng: map.getCenter().lng() - 0.01});
+        });
+
+        google.maps.event.addDomListener(rightButton, 'click', function() {
+          map.setCenter({lat: map.getCenter().lat(), lng: map.getCenter().lng() + 0.01});
+        });
+
+        placesDiv = document.createElement('div');
+        placesDiv.className = 'favPlaces';
+
+        placesRow = document.createElement('div');
+        placesRow.className = 'row';
+
+        //Här är favoritplats knapparna
+        emmasButton = document.createElement('button');
+        emmasButton.className = 'placesButton';
+
+        emmasName = document.createTextNode("Emmas place");
+
+        mickisButton = document.createElement('button');
+        mickisButton.className = 'placesButton';
+
+        mickisName = document.createTextNode("Mickis place");
+
+        elnasButton = document.createElement('button');
+        elnasButton.className = 'placesButton';
+
+        elnasName = document.createTextNode("Elnas place");
+
+        placesDiv.appendChild(placesRow);
+        placesRow.appendChild(emmasButton);
+        placesRow.appendChild(mickisButton);
+        placesRow.appendChild(elnasButton);
+        emmasButton.appendChild(emmasName);
+        mickisButton.appendChild(mickisName);
+        elnasButton.appendChild(elnasName);
+
+        google.maps.event.addDomListener(emmasButton, 'click', function() {
+          map.setCenter({lat: 58.3933, lng: 13.8391});
+        });
+
+        google.maps.event.addDomListener(mickisButton, 'click', function() {
+          map.setCenter({lat: 59.8585, lng: 17.646});
+        });
+
+        google.maps.event.addDomListener(elnasButton, 'click', function() {
+          map.setCenter({lat: 54.939196, lng: -3.929788});
+        });
+
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(placesDiv);
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(controlDiv);
+
+
+      }
+
+      function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+
+
+      function initialize() {
+
+        var mapDiv, mapOptions, zoomControlDiv, map;
+
+        var mapDiv = document.getElementById('map-canvas');
+
+        mapOptions = {
+          center: {lat: 59.3498092, lng: 18.0684758},
+          zoom: 18,
+          mapTypeId: 'hybrid',
+          tilt: 45,
+          gestureHandling: 'none',
+          // zoomControl: false,
+          disableDefaultUI: true,
+          zoomControlOptions: {
+              position: google.maps.ControlPosition.LEFT_CENTER
+          }
+        }
+
+        map = new google.maps.Map(mapDiv, mapOptions);
+
+        marker = new google.maps.Marker({
+          map: map,
+          draggable: true,
+          animation: google.maps.Animation.DROP,
+          position: {lat: 59.3498092, lng: 18.0684758}
+        });
+
+        marker.addListener('click', toggleBounce);
+
+        emmasPlace = new google.maps.Marker({
+          map: map,
+          draggable: false,
+          animation: google.maps.Animation.DROP,
+          position: {lat: 58.3933, lng: 13.8391}
+        });
+
+        emmasPlace.setDraggable(false);
+
+        emmaString = "<p> Metropolen, Skövde, is the place to be. </p>";
+
+        var emmasInfoWindow = new google.maps.InfoWindow({
+          content: emmaString
+        });
+
+        emmasPlace.addListener('click', function() {
+          emmasInfoWindow.open(map, emmasPlace);
+        });
+
+        mickisPlace = new google.maps.Marker({
+          map: map,
+          draggable: false,
+          animation: google.maps.Animation.DROP,
+          position: {lat: 59.8585, lng: 17.646}
+        });
+
+        mickisPlace.setDraggable(false);
+
+        mickisString = "<p> Välkommen hit, välkommen hem! </p>";
+
+        var mickisInfoWindow = new google.maps.InfoWindow({
+          content: mickisString
+        });
+
+        mickisPlace.addListener('click', function() {
+          mickisInfoWindow.open(map, mickisPlace);
+        });
+
+        elnasPlace = new google.maps.Marker({
+          map: map,
+          draggable: false,
+          animation: google.maps.Animation.DROP,
+          position: {lat: 54.939196, lng: -3.929788}
+        });
+
+        elnasPlace.setDraggable(false);
+
+        elnaString = "<p> Här har Harry Potter bott ish. </p>";
+
+        var elnasInfoWindow = new google.maps.InfoWindow({
+          content: elnaString
+        });
+
+        elnasPlace.addListener('click', function() {
+          elnasInfoWindow.open(map, elnasPlace);
+        });
+
+        customZoomControl( map );
+      }
+      initialize();
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initialize"
+    async defer></script>
+  </body>
+</html>
