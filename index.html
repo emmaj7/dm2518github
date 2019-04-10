@@ -6,45 +6,207 @@
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
   <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
 </head>
 
 <body>
-  <div class="toolbar">
-    <div class="toolbar__left">
-      <span class="toolbar-button">
-        <i class="ion-navicon" style="font-size:32px; vertical-align:-6px;"></i>
-      </span>
-    </div>
-    <div class="toolbar__center">
-      Navigation Bar
-    </div>
-    <div class="toolbar__right">
-      <span class="toolbar-button">Label</span>
-    </div>
-  </div>
-  <ul class="list">
-    <li class="list-item">
-      <div class="list-item__left">
-        <img class="list-item__thumbnail" src="https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg" alt="Köttfärsås och spagetti">
+  <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
+
+  <template id="page1.html">
+    <ons-page id="page1">
+      <div class="toolbar">
+        <div class="toolbar__left">
+          <span class="toolbar-button">
+          </span>
+        </div>
+        <div class="toolbar__center">
+          Maträtter
+        </div>
+        <div class="toolbar__right">
+          <span class="toolbar-button" id="about">About</span>
+        </div>
       </div>
 
-      <div class="list-item__center">
-        <div class="list-item__title">Köttfärsås och spagetti</div>
-        <div class="list-item__subtitle">Mycket god!</div>
-      </div>
-    </li>
+      <ul class="list">
+        <li class="list-item">
+          <ons-list-item tappable id="kottfars">
+            <div class="list-item__left">
+              <img class="list-item__thumbnail" src="https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg" alt="Köttfärsås och spagetti">
+            </div>
 
-    <li class="list-item">
-      <div class="list-item__left">
-        <img class="list-item__thumbnail" src="https://www.abc.net.au/news/image/9423424-3x2-700x467.jpg" alt="Hamburgare med pommes">
-      </div>
+            <div>
+              <div class="list-item__center">
+                <div class="list-item__title">Köttfärsås och spagetti</div>
+                <div class="list-item__subtitle">Mycket god!</div>
+              </div>
+            </div>
+          </ons-list-item>
+        </li>
 
-      <div class="list-item__center">
-        <div class="list-item__title">Hamburgare med pommes</div>
-        <div class="list-item__subtitle">Skräpmat men gott!</div>
+        <li class="list-item">
+          <ons-list-item tappable id="hamburgare">
+            <div class="list-item__left">
+              <img class="list-item__thumbnail" src="https://www.abc.net.au/news/image/9423424-3x2-700x467.jpg" alt="Hamburgare med pommes">
+            </div>
+            <div class="list-item__center">
+              <div class="list-item__title">Hamburgare med pommes</div>
+              <div class="list-item__subtitle">Skräpmat men gott!</div>
+            </div>
+          </ons-list-item>
+        </li>
+
+        <li class="list-item">
+          <ons-list-item tappable id="pizza">
+            <div class="list-item__left">
+              <img class="list-item__thumbnail" src="http://25.media.tumblr.com/tumblr_m7q8i1Yjuq1qje0q4o1_500.jpg" alt="Pizza">
+            </div>
+            <div class="list-item__center">
+              <div class="list-item__title">Pizza</div>
+              <div class="list-item__subtitle">kalorier mmmm!</div>
+            </div>
+          </ons-list-item>
+        </li>
+      </ul>
+
+    </ons-page>
+  </template>
+
+  <template id="hamburgare.html">
+    <ons-page id="hamburgare">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Maträtter</ons-back-button>
+        </div>
+        <div class="center"></div>
+      </ons-toolbar>
+      <div class="text-center">
+        <h3>Hamburgare med pommes</h3>
+        <img style="max-height: 400px; max-width: 400px;" src="https://www.abc.net.au/news/image/9423424-3x2-700x467.jpg" alt="Hamburgare med pommes">
+        <p>Hamburgare är gott och lätt att göra. Blanda lite kötfärs och stek, klart!</p>
       </div>
-    </li>
-  </ul>
+    </ons-page>
+  </template>
+
+  <template id="kottfars.html">
+    <ons-page id="kottfars">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Maträtter</ons-back-button>
+        </div>
+        <div class="center"></div>
+      </ons-toolbar>
+      <div class="text-center">
+        <h3>Köttfärsås och spagetti</h3>
+        <img style="max-height: 400px; max-width: 400px;" src="https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg" alt="Köttfärsås och spagetti">
+        <p>Instruktioner: Köttfärs är enkelt stek!</p>
+      </div>
+    </ons-page>
+  </template>
+
+  <template id="pizza.html">
+    <ons-page id="pizza">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Maträtter</ons-back-button>
+        </div>
+        <div class="center"></div>
+      </ons-toolbar>
+      <div class="text-center">
+        <h3>Pizza</h3>
+        <img style="max-height: 400px; max-width: 400px;" src="http://25.media.tumblr.com/tumblr_m7q8i1Yjuq1qje0q4o1_500.jpg" alt="Pizza">
+        <p>Instruktioner: Pizza mmmmm köp online!</p>
+      </div>
+    </ons-page>
+  </template>
+
+  <template id="about.html">
+    <ons-page id="about">
+      <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Maträtter</ons-back-button>
+        </div>
+        <div class="center"></div>
+      </ons-toolbar>
+      <div class="text-center">
+        <p>Med den här appen kan man kolla på maträtter. Den är gjord av tre tjejer som heter Mikaela, Elna och Emma. Vår grupp heter MEE! </p>
+      </div>
+    </ons-page>
+  </template>
+
+  <script>
+    document.addEventListener('init', function(event) {
+      var page = event.target;
+
+      if (page.id === 'page1') {
+        page.querySelector('#hamburgare').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('hamburgare.html', {
+            data: {
+              title: 'Hamburgare'
+            }
+          });
+        };
+      } else if (page.id === 'hamburgare') {
+        page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('init', function(event) {
+      var page = event.target;
+
+      if (page.id === 'page1') {
+        page.querySelector('#kottfars').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('kottfars.html', {
+            data: {
+              title: 'Köttfärs'
+            }
+          });
+        };
+      } else if (page.id === 'kottfars') {
+        page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('init', function(event) {
+      var page = event.target;
+
+      if (page.id === 'page1') {
+        page.querySelector('#pizza').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('pizza.html', {
+            data: {
+              title: 'Pizza'
+            }
+          });
+        };
+      } else if (page.id === 'pizza') {
+        page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('init', function(event) {
+      var page = event.target;
+
+      if (page.id === 'page1') {
+        page.querySelector('#about').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('about.html', {
+            data: {
+              title: 'About'
+            }
+          });
+        };
+      } else if (page.id === 'about') {
+        page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+      }
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
