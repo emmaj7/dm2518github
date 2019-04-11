@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="index.css"/>
 <html>
-
 <head>
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
   <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
@@ -11,8 +11,8 @@
 
 <body>
   <ons-page>
-    <ons-toolbar>
-      <div class="center">Maträtter</div>
+    <ons-toolbar style="background: #ff9999" id="toolbar">
+      <div class="center" id="header">Maträtter</div>
     </ons-toolbar>
 
     <ons-tabbar swipeable position="auto">
@@ -30,7 +30,7 @@
   <template id="hamburgare.html">
     <ons-page id="hamburgare">
       <div class="text-center">
-        <h3>Hamburgare med pommes</h3>
+        <h3 id="recipe-name">Hamburgare med pommes</h3>
         <img style="max-height: 400px; max-width: 400px;" src="https://www.abc.net.au/news/image/9423424-3x2-700x467.jpg" alt="Hamburgare med pommes">
         <p>Hamburgare är gott och lätt att göra. Blanda lite kötfärs och stek, klart!</p>
       </div>
@@ -40,7 +40,7 @@
   <template id="kottfars.html">
     <ons-page id="kottfars">
       <div class="text-center">
-        <h3>Köttfärsås och spagetti</h3>
+        <h3 id="recipe-name">Köttfärsås och spagetti</h3>
         <img style="max-height: 400px; max-width: 400px;" src="https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg" alt="Köttfärsås och spagetti">
         <p>Instruktioner: Köttfärs är enkelt stek!</p>
       </div>
@@ -50,7 +50,7 @@
   <template id="pizza.html">
     <ons-page id="pizza">
       <div class="text-center">
-        <h3>Pizza</h3>
+        <h3 id="recipe-name">Pizza</h3>
         <img style="max-height: 400px; max-width: 400px;" src="http://25.media.tumblr.com/tumblr_m7q8i1Yjuq1qje0q4o1_500.jpg" alt="Pizza">
         <p>Instruktioner: Pizza mmmmm köp online!</p>
       </div>

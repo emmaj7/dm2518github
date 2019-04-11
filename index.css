@@ -1,0 +1,16 @@
+#header{
+  font-size: 30px;
+  color: white;
+}
+
+p {
+  font-size: 20px;
+}
+
+#recipe-name{
+  color: green;
+}
+
+#toolbar {
+  border-color: red !important;
+}
