@@ -4,7 +4,7 @@
 # dependencies
 /lab2/node_modules
 
-
+/node_modules
 
 # testing
 /coverage

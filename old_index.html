@@ -10,22 +10,66 @@
 </head>
 
 <body>
-  <ons-page>
-    <ons-toolbar>
-      <div class="center">Maträtter</div>
-    </ons-toolbar>
+  <ons-navigator swipeable id="myNavigator" page="page1.html"></ons-navigator>
 
-    <ons-tabbar swipeable position="auto">
-      <ons-tab page="about.html" label="About" icon="md-face" active>
-      </ons-tab>
-      <ons-tab page="kottfars.html" label="Köttfärssås" icon="fa-file">
-      </ons-tab>
-      <ons-tab page="hamburgare.html" label="Hamburgare" icon="fa-file">
-      </ons-tab>
-      <ons-tab page="pizza.html" label="Pizza" icon="fa-file">
-      </ons-tab>
-    </ons-tabbar>
-  </ons-page>
+  <template id="page1.html">
+    <ons-page id="page1">
+      <div class="toolbar">
+        <div class="toolbar__left">
+          <span class="toolbar-button">
+          </span>
+        </div>
+        <div class="toolbar__center">
+          Maträtter
+        </div>
+        <div class="toolbar__right">
+          <span class="toolbar-button" id="about">About</span>
+        </div>
+      </div>
+
+      <ul class="list">
+        <li class="list-item">
+          <ons-list-item tappable id="kottfars">
+            <div class="list-item__left">
+              <img class="list-item__thumbnail" src="https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg" alt="Köttfärsås och spagetti">
+            </div>
+
+            <div>
+              <div class="list-item__center">
+                <div class="list-item__title">Köttfärsås och spagetti</div>
+                <div class="list-item__subtitle">Mycket god!</div>
+              </div>
+            </div>
+          </ons-list-item>
+        </li>
+
+        <li class="list-item">
+          <ons-list-item tappable id="hamburgare">
+            <div class="list-item__left">
+              <img class="list-item__thumbnail" src="https://www.abc.net.au/news/image/9423424-3x2-700x467.jpg" alt="Hamburgare med pommes">
+            </div>
+            <div class="list-item__center">
+              <div class="list-item__title">Hamburgare med pommes</div>
+              <div class="list-item__subtitle">Skräpmat men gott!</div>
+            </div>
+          </ons-list-item>
+        </li>
+
+        <li class="list-item">
+          <ons-list-item tappable id="pizza">
+            <div class="list-item__left">
+              <img class="list-item__thumbnail" src="http://25.media.tumblr.com/tumblr_m7q8i1Yjuq1qje0q4o1_500.jpg" alt="Pizza">
+            </div>
+            <div class="list-item__center">
+              <div class="list-item__title">Pizza</div>
+              <div class="list-item__subtitle">kalorier mmmm!</div>
+            </div>
+          </ons-list-item>
+        </li>
+      </ul>
+
+    </ons-page>
+  </template>
 
   <template id="hamburgare.html">
     <ons-page id="hamburgare">
