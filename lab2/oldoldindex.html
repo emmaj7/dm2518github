@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="index.css"/>
+<html>
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+  <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+</head>
+
+<body>
+  <ons-page>
+    <ons-toolbar style="background: #ff9999" id="toolbar">
+      <div class="center" id="header">Maträtter</div>
+    </ons-toolbar>
+
+    <ons-tabbar swipeable position="auto">
+      <ons-tab page="about.html" label="About" icon="md-face" active>
+      </ons-tab>
+      <ons-tab page="kottfars.html" label="Köttfärssås" icon="fa-file">
+      </ons-tab>
+      <ons-tab page="hamburgare.html" label="Hamburgare" icon="fa-file">
+      </ons-tab>
+      <ons-tab page="pizza.html" label="Pizza" icon="fa-file">
+      </ons-tab>
+    </ons-tabbar>
+  </ons-page>
+
+  <template id="hamburgare.html">
+    <ons-page id="hamburgare">
+      <div class="text-center">
+        <h3 id="recipe-name">Hamburgare med pommes</h3>
+        <img style="max-height: 400px; max-width: 400px;" src="https://www.abc.net.au/news/image/9423424-3x2-700x467.jpg" alt="Hamburgare med pommes">
+        <p>Hamburgare är gott och lätt att göra. Blanda lite kötfärs och stek, klart!</p>
+      </div>
+    </ons-page>
+  </template>
+
+  <template id="kottfars.html">
+    <ons-page id="kottfars">
+      <div class="text-center">
+        <h3 id="recipe-name">Köttfärsås och spagetti</h3>
+        <img style="max-height: 400px; max-width: 400px;" src="https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/one_pot_chorizo_and_15611_16x9.jpg" alt="Köttfärsås och spagetti">
+        <p>Instruktioner: Köttfärs är enkelt stek!</p>
+      </div>
+    </ons-page>
+  </template>
+
+  <template id="pizza.html">
+    <ons-page id="pizza">
+      <div class="text-center">
+        <h3 id="recipe-name">Pizza</h3>
+        <img style="max-height: 400px; max-width: 400px;" src="http://25.media.tumblr.com/tumblr_m7q8i1Yjuq1qje0q4o1_500.jpg" alt="Pizza">
+        <p>Instruktioner: Pizza mmmmm köp online!</p>
+      </div>
+    </ons-page>
+  </template>
+
+  <template id="about.html">
+    <ons-page id="about">
+      <div class="text-center">
+        <p>Med den här appen kan man kolla på maträtter. Den är gjord av tre tjejer som heter Mikaela, Elna och Emma. Vår grupp heter MEE! </p>
+      </div>
+    </ons-page>
+  </template>
+
+  <script>
+    document.addEventListener('init', function(event) {
+      var page = event.target;
+
+      if (page.id === 'page1') {
+        page.querySelector('#hamburgare').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('hamburgare.html', {
+            data: {
+              title: 'Hamburgare'
+            }
+          });
+        };
+      } else if (page.id === 'hamburgare') {
+        page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('init', function(event) {
+      var page = event.target;
+
+      if (page.id === 'page1') {
+        page.querySelector('#kottfars').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('kottfars.html', {
+            data: {
+              title: 'Köttfärs'
+            }
+          });
+        };
+      } else if (page.id === 'kottfars') {
+        page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('init', function(event) {
+      var page = event.target;
+
+      if (page.id === 'page1') {
+        page.querySelector('#pizza').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('pizza.html', {
+            data: {
+              title: 'Pizza'
+            }
+          });
+        };
+      } else if (page.id === 'pizza') {
+        page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener('init', function(event) {
+      var page = event.target;
+
+      if (page.id === 'page1') {
+        page.querySelector('#about').onclick = function() {
+          document.querySelector('#myNavigator').pushPage('about.html', {
+            data: {
+              title: 'About'
+            }
+          });
+        };
+      } else if (page.id === 'about') {
+        page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+      }
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
