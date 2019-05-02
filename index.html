@@ -34,13 +34,9 @@
 
   // Publish a simple message to the “demo_tutorial” channel pubnub:
 
-  // pubnubDemo.publish({ message: { "color" : "blue" }, channel: 'north' });
-	//
-  // pubnubDemo.addListener({
-  //     message: function(m){
-  //     console.log(m.message.color)
-	// 		}
-  // })
+  //pubnubDemo.publish({ message: { "color" : "blue" }, channel: 'north' });
+
+
 
 	pubnubDemo.subscribe({
 		channels: ['north', 'east', 'south', 'west']
@@ -75,22 +71,12 @@ function deviceOrientationListener(event) {
 				message: {"color":"blue"},
 				channel: 'north'
 			});
-			pubnubDemo.addListener({
-					message: function(m){
-					console.log(m.message.color)
-					}
-			})
   }
   else if (45 < heading && heading < 135 ){
 		pubnubDemo.publish({
 			message: {"color":"red"},
 			channel: 'east'
 		});
-		pubnubDemo.addListener({
-				message: function(m){
-				console.log(m.message.color)
-				}
-		})
   }
 
   else if (135 < heading && heading < 225 ){
@@ -98,11 +84,6 @@ function deviceOrientationListener(event) {
 			message: {"color":"yellow"},
 			channel: 'south'
 		});
-		pubnubDemo.addListener({
-				message: function(m){
-				console.log(m.message.color)
-				}
-		})
     }
 
     else if (225 < heading && heading < 315 ){
@@ -110,13 +91,14 @@ function deviceOrientationListener(event) {
 				message: {"color":"pink"},
 				channel: 'west'
 			});
-			pubnubDemo.addListener({
-					message: function(m){
-					console.log(m.message.color)
-					}
-			})
     }
 	}
+
+	pubnubDemo.addListener({
+      message: function(m){
+      console.log(m.message.color)
+			}
+  })
 
 
 
