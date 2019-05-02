@@ -15,7 +15,7 @@
 
 <body>
 
-  <p id=”test”> yo </p>
+  <p id=”heading”> yo </p>
 
 
   <!-- Instantiate PubNub -->
@@ -30,20 +30,20 @@
 
   });
 
+
   // Publish a simple message to the “demo_tutorial” channel pubnub:
 
-  pubnubDemo.publish({ message: { "color" : "blue" }, channel: 'north_channel' });
+  //pubnubDemo.publish({ message: { "color" : "blue" }, channel: 'north_channel' });
 
   pubnubDemo.addListener({
-
       message: function(message){
-
-      //console.log(message)
-      document.getElementById('heading').innerHTML = "ASD"
-
-  }
-
+      console.log(message)
+			}
   })
+
+	pubnubDemo.subscribe({
+		channels: ['north', 'east', 'south', 'west']
+	});
 
   // subscriba till olika kanaler beroende på om kompassen pekar på norr/syd osv.
 
@@ -54,33 +54,52 @@ function deviceOrientationListener(event) {
   var alpha   = event.alpha; //z axis rotation [0,360)
   // var beta     = event.beta; //x axis rotation [-180, 180]
   // var gamma   = event.gamma; //y axis rotation [-90, 90]
-	document.getElementById('test').innerHTML = alpha;
+	document.getElementById('heading').innerHTML =  alpha;
 
-		  // if ((0 < alpha && alpha < 45) || (315 < alpha && alpha < 360)){
-		  //   pubnubDemo.subscribe({
-			//     channels: ['north_channel']
-		  //   });
-		  // }
-	    // else if (45 < alpha && alpha < 135 ){
-	    //   pubnubDemo.subscribe({
-		  //     channels: ['east_channel']
-	    //   });
-	    // }
-			//
-      // else if (135 < alpha && alpha < 225 ){
-	    //     pubnubDemo.subscribe({
-		  //       channels: ['south_channel']
-	    //     });
-      //   }
-			//
-      //   else if (225 < alpha && alpha < 315 ){
-      //     pubnubDemo.subscribe({
-	    //       channels: ['west_channel']
-      //     });
-			//
-      //   }
+	//Check if absolute values have been sent
+	if (typeof event.webkitCompassHeading !== "undefined") {
+		alpha = event.webkitCompassHeading; //for iOS devices
+		var heading = alpha
+		document.getElementById("heading").innerHTML = heading.toFixed([0]);
+	}
+	else {
+		alert("Your device is reporting relative heading values, so this compass won't point north :(");
+		var heading = 360 - alpha; //heading [0, 360)
+		document.getElementById("heading").innerHTML = heading.toFixed([0]);
+	}
+
+
+		  if ((0 < heading && heading < 45) || (315 < heading && heading < 360)){
+			    pubnubDemo.publish({
+						message: {"color":"blue"},
+						channel: 'north'
+					});
+		  }
+	    else if (45 < heading && heading < 135 ){
+				pubnubDemo.publish({
+					message: {"color":"red"},
+					channel: 'east'
+				});
+	    }
+
+      else if (135 < heading && heading < 225 ){
+				pubnubDemo.publish({
+					message: {"color":"yellow"},
+					channel: 'south'
+				});
+        }
+
+        else if (225 < heading && heading < 315 ){
+					pubnubDemo.publish({
+						message: {"color":"pink"},
+						channel: 'west'
+					});
+
+        }
 
       }
+
+
 
 
 			if (window.DeviceOrientationEvent){
@@ -97,17 +116,7 @@ function deviceOrientationListener(event) {
 
 
 
-  //Check if absolute values have been sent
-  // if (typeof event.webkitCompassHeading !== "undefined") {
-  //   alpha = event.webkitCompassHeading; //for iOS devices
-  //   var heading = alpha
-  //   document.getElementById("heading").innerHTML = heading.toFixed([0]);
-  // }
-  // else {
-  //   alert("Your device is reporting relative alpha values, so this compass won't point north :(");
-  //   var heading = 360 - alpha; //heading [0, 360)
-  //   document.getElementById("heading").innerHTML = heading.toFixed([0]);
-  // }
+}
 
 
 </script>
