@@ -84,7 +84,9 @@ function deviceOrientationListener(event) {
 			if (window.deviceOrientationEvent){
 				window.addEventListener(
 					"deviceOrientation",
-					deviceOrientationListener,
+					function(event){
+						alert('hej');
+					},
 					true
 				);
 			} else {
