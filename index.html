@@ -24,11 +24,8 @@
   <script>
 
   var pubnubDemo = new PubNub({
-
   publishKey: 'pub-c-02c1869a-f2fe-4f32-ae53-e7cca5c20e04',
-
   subscribeKey: 'sub-c-352e2e98-6800-11e9-b514-6a4d3cd75da8'
-
   });
 
 
@@ -105,17 +102,16 @@ function deviceOrientationListener(event) {
     }
 	}
 
-			if (window.DeviceOrientationEvent){
-				window.addEventListener(
-					"deviceOrientation",
-					function(event){
-						alert('hej');
-					},
-					true
-				);
-			} else {
-				alert("Bajs!");
-			}
+	// Check if device can provide absolute orientation data
+	    if (window.DeviceOrientationAbsoluteEvent) {
+	      window.addEventListener("DeviceOrientationAbsoluteEvent", deviceOrientationListener);
+	    } // If not, check if the device sends any orientation data
+	    else if(window.DeviceOrientationEvent){
+	      window.addEventListener("deviceorientation", deviceOrientationListener);
+	    } // Send an alert if the device isn't compatible
+	    else {
+	      alert("Sorry, try again on a compatible mobile device!");
+	    }
 
 
 
