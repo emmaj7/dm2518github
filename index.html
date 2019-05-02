@@ -71,11 +71,11 @@
       // Change backgroud colour based on heading
       // Green for North and South, black otherwise
       if ((heading >= 0 && heading < 45) || (heading <= 360 && heading >= 315)) { //Allow +- 1 degree
-        document.body.style.backgroundColor = "green";
+        document.body.style.backgroundColor = "purple";
         document.getElementById("heading").innerHTML = "You are now in the North channel"; // North
 
 				pubnubDemo.publish({
-					message: { "color" : "purple" },
+					message: { "color" : "green" },
 					channel: 'north' });
 				}
 
@@ -99,11 +99,11 @@
 				}
 
 				else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
-					document.body.style.backgroundColor = "red";
+					document.body.style.backgroundColor = "blue";
 					document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
 
 					pubnubDemo.publish({
-						message: { "color" : "blue" },
+						message: { "color" : "red" },
 						channel: 'west' });
 					}
 
