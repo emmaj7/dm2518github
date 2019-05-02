@@ -58,6 +58,8 @@ function deviceOrientationListener(event) {
   // var gamma   = event.gamma; //y axis rotation [-90, 90]
 	//document.getElementById('heading').innerHTML =  alpha;
 
+	console.log('yo 1')
+
 	//Check if absolute values have been sent
 	if (typeof event.webkitCompassHeading !== "undefined") {
 		alpha = event.webkitCompassHeading; //for iOS devices
@@ -76,12 +78,14 @@ function deviceOrientationListener(event) {
 				message: {"color":"blue"},
 				channel: 'north'
 			});
+			console.log('n');
   }
   else if (45 < heading && heading < 135 ){
 		pubnubDemo.publish({
 			message: {"color":"red"},
 			channel: 'east'
 		});
+		console.log('e');
   }
 
   else if (135 < heading && heading < 225 ){
@@ -89,6 +93,7 @@ function deviceOrientationListener(event) {
 			message: {"color":"yellow"},
 			channel: 'south'
 		});
+		console.log('s');
     }
 
     else if (225 < heading && heading < 315 ){
@@ -96,13 +101,9 @@ function deviceOrientationListener(event) {
 				message: {"color":"pink"},
 				channel: 'west'
 			});
+			console.log('w');
     }
 	}
-
-
-
-
-
 
 			if (window.DeviceOrientationEvent){
 				window.addEventListener(
