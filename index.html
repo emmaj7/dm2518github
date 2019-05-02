@@ -74,7 +74,7 @@
 
 
       else if (heading >= 45 && heading < 135){
-				document.body.style.backgroundColor = "green";
+				document.body.style.backgroundColor = "pink";
 				document.getElementById("heading").innerHTML = "E"; // South
 
 				pubnubDemo.publish({
@@ -84,7 +84,7 @@
 				}
 
       else if (heading >= 135 && heading < 225){ //Allow +- 1 degree
-        document.body.style.backgroundColor = "green";
+        document.body.style.backgroundColor = "yellow";
         document.getElementById("heading").innerHTML = "S"; // South
 
 				pubnubDemo.publish({
@@ -94,7 +94,7 @@
 				}
 
 				else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
-					document.body.style.backgroundColor = "green";
+					document.body.style.backgroundColor = "red";
 					document.getElementById("heading").innerHTML = "W"; // South
 
 					pubnubDemo.publish({
