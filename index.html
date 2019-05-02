@@ -36,7 +36,12 @@
 
   //pubnubDemo.publish({ message: { "color" : "blue" }, channel: 'north' });
 
-
+	pubnubDemo.addListener({
+      message: function(m){
+      console.log(m.message.color)
+			console.log(m)
+			}
+  })
 
 	pubnubDemo.subscribe({
 		channels: ['north', 'east', 'south', 'west']
@@ -94,12 +99,7 @@ function deviceOrientationListener(event) {
     }
 	}
 
-	pubnubDemo.addListener({
-      message: function(m){
-      console.log(m.message.color)
-			console.log(m)
-			}
-  })
+
 
 
 
@@ -120,6 +120,6 @@ function deviceOrientationListener(event) {
 
 
 </script>
-  <p id=”heading”> hejsaaaaan 2.0 </p>
+  <p id=”heading”> hejsaaaaan 3.0 </p>
 
 </body>
