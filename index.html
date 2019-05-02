@@ -1,117 +1,102 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, user-scalable=no,
-		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-	<script src="https://code.jquery.com/jquery-3.4.0.min.js"></script>
-  <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js"></script>
-	<script type="text/javascript"></script>
-	<title>Lab 4</title>
-</head>
-
-<body>
-
-  <script>
-
-  var pubnubDemo = new PubNub({
-  publishKey: 'pub-c-02c1869a-f2fe-4f32-ae53-e7cca5c20e04',
-  subscribeKey: 'sub-c-352e2e98-6800-11e9-b514-6a4d3cd75da8'
-  });
+  <head>
+    <style>
+    p {
+      font-family: verdana;
+      font-size: 400px;
+      color: #FFFFFF;
+    }
+    </style>
+    <title>Compass</title>
 
 
-  // Publish a simple message to the “demo_tutorial” channel pubnub:
+    <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js"></script>
 
-	pubnubDemo.publish({ message: { "color" : "blue" }, channel: 'north' });
+    <script type="text/javascript">
 
-	pubnubDemo.addListener({
-      message: function(m){
-      console.log(m.message.color)
-			console.log(m)
-			}
-  })
-
-	pubnubDemo.subscribe({
-		channels: ['north', 'east', 'south', 'west']
-	});
-
-  // subscriba till olika kanaler beroende på om kompassen pekar på norr/syd osv.
-
-  // skapa unsubscribe sedan för att man inte kan subscriba till flera kanaler samtidigt
-
-  // Get event data
-	function deviceOrientationListener(event) {
-		var alpha   = event.alpha; //z axis rotation [0,360)
-		var beta     = event.beta; //x axis rotation [-180, 180]
-		var gamma   = event.gamma; //y axis rotation [-90, 90]
-
-		console.log("heeelloo")
-
-
-		//Check if absolute values have been sent
-		if (typeof event.webkitCompassHeading !== "undefined") {
-			alpha = event.webkitCompassHeading; //for iOS devices
-			var heading = alpha
-			document.getElementById("heading").innerHTML = heading.toFixed([0]);
-		}
-		else {
-			alert("Your device is reporting relative alpha values, so this compass won't point north :(");
-			var heading = 360 - alpha; //heading [0, 360)
-			document.getElementById("heading").innerHTML = heading.toFixed([0]);
-		}
-
-
-  if ((0 < heading && heading < 45) || (315 < heading && heading < 360)){
-	    pubnubDemo.publish({
-				message: {"color":"blue"},
-				channel: 'north'
-			});
-			console.log('n');
-  }
-  else if (45 < heading && heading < 135 ){
-		pubnubDemo.publish({
-			message: {"color":"red"},
-			channel: 'east'
+		var pubnubDemo = new PubNub({
+		publishKey: 'pub-c-02c1869a-f2fe-4f32-ae53-e7cca5c20e04',
+		subscribeKey: 'sub-c-352e2e98-6800-11e9-b514-6a4d3cd75da8'
 		});
-		console.log('e');
-  }
 
-  else if (135 < heading && heading < 225 ){
-		pubnubDemo.publish({
-			message: {"color":"yellow"},
-			channel: 'south'
-		});
-		console.log('s');
+      pubnubDemo.addListener({
+        message: function(message){
+          console.log(message.message.color)
+          console.log(message.channel)
+        }
+      })
+
+      pubnubDemo.subscribe({
+        channels: ['north', 'south', 'west']
+      });
+
+
+    </script>
+    <script>
+
+    function sendMessage(){
+
+    pubnubDemo.publish({
+      message: { "color" : "red" },
+      channel: 'west' });
+
     }
 
-    else if (225 < heading && heading < 315 ){
-			pubnubDemo.publish({
-				message: {"color":"pink"},
-				channel: 'west'
-			});
-			console.log('w');
+    // Get event data
+    function deviceOrientationListener(event) {
+      var alpha    = event.alpha; //z axis rotation [0,360)
+      var beta     = event.beta; //x axis rotation [-180, 180]
+      var gamma    = event.gamma; //y axis rotation [-90, 90]
+      //Check if absolute values have been sent
+      if (typeof event.webkitCompassHeading !== "undefined") {
+        alpha = event.webkitCompassHeading; //iOS non-standard
+        var heading = alpha
+        document.getElementById("heading").innerHTML = heading.toFixed([0]);
+      }
+      else {
+        alert("Your device is reporting relative alpha values, so this compass won't point north :(");
+        var heading = 360 - alpha; //heading [0, 360)
+        document.getElementById("heading").innerHTML = heading.toFixed([0]);
+      }
+
+
+      // Change backgroud colour based on heading
+      // Green for North and South, black otherwise
+      if (heading > 359 || heading < 1) { //Allow +- 1 degree
+        document.body.style.backgroundColor = "green";
+        document.getElementById("heading").innerHTML = "N"; // North
+       }
+
+      else if (heading <= 150 && heading < 151){
+        document.body.style.backgroundColor = "green";
+
+      }
+
+      else if (heading > 179 && heading < 181){ //Allow +- 1 degree
+        document.body.style.backgroundColor = "green";
+        document.getElementById("heading").innerHTML = "S"; // South
+      }
+      else { // Otherwise, use near black
+        document.body.style.backgroundColor = "#161616";
+        //pubnubDemo.unsubscribeAll();
+      }
     }
-	}
 
-	// Check if device can provide absolute orientation data
-	    if (window.DeviceOrientationAbsoluteEvent) {
-	      window.addEventListener("DeviceOrientationAbsoluteEvent", deviceOrientationListener);
-				console.log("inne här")
-	    } // If not, check if the device sends any orientation data
-	    else if(window.DeviceOrientationEvent){
-	      window.addEventListener("deviceorientation", deviceOrientationListener);
-				console.log("inne härrrå")
-	    } // Send an alert if the device isn't compatible
-	    else {
-	      alert("Sorry, try again on a compatible mobile device!");
-	    }
-
-
-
-
-</script>
-  <p id=”heading”> hejsaaaaan 3.0 </p>
-
-</body>
+    // Check if device can provide absolute orientation data
+    if (window.DeviceOrientationAbsoluteEvent) {
+      window.addEventListener("DeviceOrientationAbsoluteEvent", deviceOrientationListener);
+    } // If not, check if the device sends any orientation data
+    else if(window.DeviceOrientationEvent){
+      window.addEventListener("deviceorientation", deviceOrientationListener);
+    } // Send an alert if the device isn't compatible
+    else {
+      alert("Sorry, try again on a compatible mobile device!");
+    }
+    </script>
+  </head>
+  <body>
+    <br><br>
+    <p id="heading" style="text-align:center"></p>
+  </body>
+</html>
