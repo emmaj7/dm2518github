@@ -5,8 +5,11 @@
     p {
       font-family: verdana;
       font-size: 40px;
-      color: #FFFFFF;
+      color: #000000;
     }
+		form {
+			text-align: center;
+		}
     </style>
     <title>Compass</title>
 
@@ -65,7 +68,7 @@
       // Green for North and South, black otherwise
       if ((heading >= 0 && heading < 45) || (heading <= 360 && heading >= 315)) { //Allow +- 1 degree
         document.body.style.backgroundColor = "green";
-        document.getElementById("heading").innerHTML = "North"; // North
+        document.getElementById("heading").innerHTML = "You are now in the North channel"; // North
 
 				pubnubDemo.publish({
 					message: { "color" : "green" },
@@ -75,7 +78,7 @@
 
       else if (heading >= 45 && heading < 135){
 				document.body.style.backgroundColor = "pink";
-				document.getElementById("heading").innerHTML = "East"; // South
+				document.getElementById("heading").innerHTML = "You are now in the East channel"; // South
 
 				pubnubDemo.publish({
 					message: { "color" : "pink" },
@@ -84,7 +87,7 @@
 
       else if (heading >= 135 && heading < 225){ //Allow +- 1 degree
         document.body.style.backgroundColor = "yellow";
-        document.getElementById("heading").innerHTML = "South"; // South
+        document.getElementById("heading").innerHTML = "You are now in the South channel"; // South
 
 				pubnubDemo.publish({
 					message: { "color" : "yellow" },
@@ -93,7 +96,7 @@
 
 				else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
 					document.body.style.backgroundColor = "red";
-					document.getElementById("heading").innerHTML = "West"; // South
+					document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
 
 					pubnubDemo.publish({
 						message: { "color" : "red" },
