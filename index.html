@@ -2,13 +2,13 @@
 <html>
   <head>
     <style>
-		h2 {
+		h1 {
 			font-family: verdana;
 			color: #000000;
 		}
     p {
       font-family: verdana;
-      font-size: 30px;
+      font-size: 20px;
       color: #000000;
     }
 		form {
@@ -75,7 +75,7 @@
         document.getElementById("heading").innerHTML = "You are now in the North channel"; // North
 
 				pubnubDemo.publish({
-					message: { "color" : "green" },
+					message: { "color" : "purple" },
 					channel: 'north' });
 				}
 
@@ -103,7 +103,7 @@
 					document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
 
 					pubnubDemo.publish({
-						message: { "color" : "red" },
+						message: { "color" : "blue" },
 						channel: 'west' });
 					}
 
