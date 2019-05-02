@@ -42,12 +42,11 @@
     </script>
     <script>
 
-		var field = "";
+    function sendMessage(input, field){
 
-    function sendMessage(input){
-	    pubnubDemo.publish({
-	      message: { "color" : input },
-	      channel: field });
+    pubnubDemo.publish({
+      message: { "color" : input },
+      channel: field });
 
     }
 
@@ -72,8 +71,7 @@
       // Change backgroud colour based on heading
       // Green for North and South, black otherwise
       if ((heading >= 0 && heading < 45) || (heading <= 360 && heading >= 315)) { //Allow +- 1 degree
-				field = "north";
-				document.body.style.backgroundColor = "purple";
+        document.body.style.backgroundColor = "purple";
         document.getElementById("heading").innerHTML = "You are now in the North channel"; // North
 
 				pubnubDemo.publish({
@@ -83,7 +81,6 @@
 
 
       else if (heading >= 45 && heading < 135){
-				field = "east";
 				document.body.style.backgroundColor = "pink";
 				document.getElementById("heading").innerHTML = "You are now in the East channel"; // South
 
@@ -93,8 +90,7 @@
 				}
 
       else if (heading >= 135 && heading < 225){ //Allow +- 1 degree
-				field = "south";
-				document.body.style.backgroundColor = "yellow";
+        document.body.style.backgroundColor = "yellow";
         document.getElementById("heading").innerHTML = "You are now in the South channel"; // South
 
 				pubnubDemo.publish({
@@ -103,7 +99,6 @@
 				}
 
 				else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
-					field = "west":
 					document.body.style.backgroundColor = "blue";
 					document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
 
@@ -134,7 +129,9 @@
     <br><br>
     <h1 id="heading" style="text-align:center"></h1>
 		<p style="text-align:center">Write a message in the field below to chat with others in this channel! :)</p>
-		<input type="text" id="meddelande">
-		<button type="submit" onclick= "sendMessage(document.getElementById('a').value)" id="sendButton">Send</button>
+		<form>
+			<input type="text" id="meddelande">
+			<button id="sendButton">Send</button>
+		</form>
   </body>
 </html>
