@@ -34,11 +34,11 @@
 
   // Publish a simple message to the “demo_tutorial” channel pubnub:
 
-  //pubnubDemo.publish({ message: { "color" : "blue" }, channel: 'north_channel' });
+  pubnubDemo.publish({ message: { "color" : "blue" }, channel: 'north' });
 
   pubnubDemo.addListener({
-      message: function(message){
-      console.log(message)
+      message: function(m){
+      console.log(m)
 			}
   })
 
