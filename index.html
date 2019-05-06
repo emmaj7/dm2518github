@@ -48,7 +48,6 @@
       pubnubDemo.publish({
         message: { "message" : input },
         channel: field });
-      deviceOrientationListener();
     }
 
     // Get event data
@@ -75,7 +74,7 @@
         document.body.style.backgroundColor = "purple";
 				field = "north";
         document.getElementById("heading").innerHTML = "You are now in the North channel";
-				document.getElementById("message_north").innerHTML = message.message.message; // North
+				document.getElementById("message_north").innerHTML = message.message; // North
 
 				// pubnubDemo.publish({
 				// 	message: { "color" : "green" },
@@ -87,7 +86,7 @@
 				document.body.style.backgroundColor = "pink";
         field = "east";
 				document.getElementById("heading").innerHTML = "You are now in the East channel"; // South
-        document.getElementById("message_east").innerHTML = message.message.message;
+        document.getElementById("message_east").innerHTML = message.message;
 
 				// pubnubDemo.publish({
 				// 	message: { "color" : "pink" },
@@ -98,7 +97,7 @@
         document.body.style.backgroundColor = "yellow";
         field = "south";
         document.getElementById("heading").innerHTML = "You are now in the South channel"; // South
-        document.getElementById("message_south").innerHTML = message.message.message;
+        document.getElementById("message_south").innerHTML = message.message;
 
 				// pubnubDemo.publish({
 				// 	message: { "color" : "yellow" },
@@ -109,7 +108,7 @@
 					document.body.style.backgroundColor = "blue";
           field = "west";
 					document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
-          document.getElementById("message_west").innerHTML = message.message.message;
+          document.getElementById("message_west").innerHTML = message.message;
 
 					// pubnubDemo.publish({
 					// 	message: { "color" : "red" },
