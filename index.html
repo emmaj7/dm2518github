@@ -45,11 +45,9 @@
 		var field = "";
 
     function sendMessage(input){
-
       pubnubDemo.publish({
         message: { "message" : input },
         channel: field });
-
     }
 
     // Get event data
@@ -78,10 +76,10 @@
         document.getElementById("heading").innerHTML = "You are now in the North channel";
 				document.getElementById("message_north").innerHTML = message.message.message; // North
 
-				pubnubDemo.publish({
-					message: { "color" : "green" },
-					channel: 'north' });
-				}
+				// pubnubDemo.publish({
+				// 	message: { "color" : "green" },
+				// 	channel: 'north' });
+				// }
 
 
       else if (heading >= 45 && heading < 135){
@@ -90,10 +88,10 @@
 				document.getElementById("heading").innerHTML = "You are now in the East channel"; // South
         document.getElementById("message_east").innerHTML = message.message.message;
 
-				pubnubDemo.publish({
-					message: { "color" : "pink" },
-					channel: 'east' });
-				}
+				// pubnubDemo.publish({
+				// 	message: { "color" : "pink" },
+				// 	channel: 'east' });
+				// }
 
       else if (heading >= 135 && heading < 225){ //Allow +- 1 degree
         document.body.style.backgroundColor = "yellow";
@@ -101,10 +99,10 @@
         document.getElementById("heading").innerHTML = "You are now in the South channel"; // South
         document.getElementById("message_south").innerHTML = message.message.message;
 
-				pubnubDemo.publish({
-					message: { "color" : "yellow" },
-					channel: 'south' });
-				}
+				// pubnubDemo.publish({
+				// 	message: { "color" : "yellow" },
+				// 	channel: 'south' });
+				// }
 
 				else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
 					document.body.style.backgroundColor = "blue";
@@ -112,10 +110,10 @@
 					document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
           document.getElementById("message_west").innerHTML = message.message.message;
 
-					pubnubDemo.publish({
-						message: { "color" : "red" },
-						channel: 'west' });
-					}
+					// pubnubDemo.publish({
+					// 	message: { "color" : "red" },
+					// 	channel: 'west' });
+					// }
 
       else { // Otherwise, use near black
         document.body.style.backgroundColor = "#161616";
