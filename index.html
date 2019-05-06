@@ -74,7 +74,8 @@
         document.body.style.backgroundColor = "purple";
 				field = "north";
         document.getElementById("heading").innerHTML = "You are now in the North channel";
-				document.getElementById("message_north").innerHTML = message.message; // North
+				document.getElementById("message_north").innerHTML = message.message;
+        console.log(message.message); // North
 
 				// pubnubDemo.publish({
 				// 	message: { "color" : "green" },
@@ -87,7 +88,7 @@
         field = "east";
 				document.getElementById("heading").innerHTML = "You are now in the East channel"; // South
         document.getElementById("message_east").innerHTML = message.message;
-
+        console.log(message.message);
 				// pubnubDemo.publish({
 				// 	message: { "color" : "pink" },
 				// 	channel: 'east' });
@@ -98,7 +99,7 @@
         field = "south";
         document.getElementById("heading").innerHTML = "You are now in the South channel"; // South
         document.getElementById("message_south").innerHTML = message.message;
-
+        console.log(message.message);
 				// pubnubDemo.publish({
 				// 	message: { "color" : "yellow" },
 				// 	channel: 'south' });
@@ -109,7 +110,7 @@
           field = "west";
 					document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
           document.getElementById("message_west").innerHTML = message.message;
-
+          console.log(message.message);
 					// pubnubDemo.publish({
 					// 	message: { "color" : "red" },
 					// 	channel: 'west' });
