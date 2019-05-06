@@ -35,18 +35,20 @@
       })
 
       pubnubDemo.subscribe({
-        channels: ['north', 'south', 'west']
+        channels: ['north', 'south', 'west', 'east']
       });
 
 
     </script>
     <script>
 
-    function sendMessage(input, field){
+		var field = "";
 
-    pubnubDemo.publish({
-      message: { "color" : input },
-      channel: field });
+    function sendMessage(input){
+
+      pubnubDemo.publish({
+        message: { "message" : input },
+        channel: field });
 
     }
 
@@ -72,7 +74,9 @@
       // Green for North and South, black otherwise
       if ((heading >= 0 && heading < 45) || (heading <= 360 && heading >= 315)) { //Allow +- 1 degree
         document.body.style.backgroundColor = "purple";
-        document.getElementById("heading").innerHTML = "You are now in the North channel"; // North
+				field = "north";
+        document.getElementById("heading").innerHTML = "You are now in the North channel";
+				document.getElementById("message_north").innerHTML = message.message; // North
 
 				pubnubDemo.publish({
 					message: { "color" : "green" },
@@ -83,6 +87,8 @@
       else if (heading >= 45 && heading < 135){
 				document.body.style.backgroundColor = "pink";
 				document.getElementById("heading").innerHTML = "You are now in the East channel"; // South
+        document.getElementById("message_east").innerHTML = message.message;
+        field = "east";
 
 				pubnubDemo.publish({
 					message: { "color" : "pink" },
@@ -92,6 +98,8 @@
       else if (heading >= 135 && heading < 225){ //Allow +- 1 degree
         document.body.style.backgroundColor = "yellow";
         document.getElementById("heading").innerHTML = "You are now in the South channel"; // South
+        document.getElementById("message_south").innerHTML = message.message;
+        field = "south";
 
 				pubnubDemo.publish({
 					message: { "color" : "yellow" },
@@ -101,6 +109,8 @@
 				else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
 					document.body.style.backgroundColor = "blue";
 					document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
+          document.getElementById("message_west").innerHTML = message.message;
+          field = "west";
 
 					pubnubDemo.publish({
 						message: { "color" : "red" },
@@ -129,9 +139,13 @@
     <br><br>
     <h1 id="heading" style="text-align:center"></h1>
 		<p style="text-align:center">Write a message in the field below to chat with others in this channel! :)</p>
-		<form>
+		<form onsubmit="sendMessage(getElementById('meddelande').value)">
 			<input type="text" id="meddelande">
-			<button id="sendButton">Send</button>
+			<button type="submit" id="sendButton">Send</button>
 		</form>
+		<div id="message_north"></div>
+		<div id="message_west"></div>
+		<div id="message_south"></div>
+		<div id="message_east"></div>
   </body>
 </html>
