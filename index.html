@@ -48,6 +48,7 @@
       pubnubDemo.publish({
         message: { "message" : input },
         channel: field });
+      deviceOrientationListener();
     }
 
     // Get event data
@@ -141,9 +142,9 @@
 			<input type="text" id="meddelande">
 			<button type="submit" id="sendButton">Send</button>
 		</form>
-		<div id="message_north"></div>
-		<div id="message_west"></div>
-		<div id="message_south"></div>
-		<div id="message_east"></div>
+		<p id="message_north"></p>
+		<p id="message_west"></p>
+		<p id="message_south"></p>
+		<p id="message_east"></p>
   </body>
 </html>
