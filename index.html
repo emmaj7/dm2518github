@@ -31,7 +31,7 @@
         message: function(message){
           console.log(message.message.message)
           console.log(message.channel)
-          console.log("1,message_" + field);
+          console.log("message_" + field);
         }
       })
 
@@ -42,6 +42,9 @@
 		var field = "";
 
     function sendMessage(input){
+
+      document.getElementById("message_" + field).innerHTML = input;
+
       pubnubDemo.publish({
         message: { "message" : input },
         channel: field });
