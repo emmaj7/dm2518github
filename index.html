@@ -31,6 +31,7 @@
         message: function(message){
           console.log(message.message.message)
           console.log(message.channel)
+          console.log("message_" + field);
         }
       })
 
@@ -48,7 +49,7 @@
       pubnubDemo.publish({
         message: { "message" : input },
         channel: field });
-      console.log("message_" + field);
+
       //document.getElementById("message_" + field).innerHTML = message.message;
 
 
