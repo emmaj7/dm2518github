@@ -31,7 +31,7 @@
         message: function(message){
           console.log(message.message.message)
           console.log(message.channel)
-          console.log("9.message_" + message.channel);
+          console.log("10.message_" + message.channel);
           var node = document.createElement("P");
           var textnode = document.createTextNode(message.message.message);
           node.appendChild(textnode);
@@ -107,15 +107,15 @@
 				// 	channel: 'south' });
 				}
 
-				else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
-					document.body.style.backgroundColor = "blue";
-          field = "west";
-					document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
+			else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
+				document.body.style.backgroundColor = "blue";
+        field = "west";
+				document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
 
-					// pubnubDemo.publish({
-					// 	message: { "color" : "red" },
-					// 	channel: 'west' });
-					}
+				// pubnubDemo.publish({
+				// 	message: { "color" : "red" },
+				// 	channel: 'west' });
+				}
 
       else { // Otherwise, use near black
         document.body.style.backgroundColor = "#161616";
@@ -139,9 +139,9 @@
     <br><br>
     <h1 id="heading" style="text-align:center"></h1>
 		<p style="text-align:center">Write a message in the field below to chat with others in this channel! :)</p>
-		<form onsubmit="sendMessage(getElementById('meddelande').value)">
+		<form>
 			<input type="text" id="meddelande">
-			<button type="submit" id="sendButton">Send</button>
+			<button type="submit" id="sendButton" onclick="sendMessage(getElementById('meddelande').value)">Send</button>
 		</form>
 		<div id="message_north"></div>
 		<div id="message_west"></div>
