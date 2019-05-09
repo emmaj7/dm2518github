@@ -48,6 +48,10 @@
       pubnubDemo.publish({
         message: { "message" : input },
         channel: field });
+      console.log("message_" + field);
+      //document.getElementById("message_" + field).innerHTML = message.message;
+
+
     }
 
     // Get event data
