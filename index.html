@@ -20,18 +20,31 @@
 
     <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.21.7.js"></script>
 
+
+  </head>
+  <body>
+    <br><br>
+    <h1 id="heading" style="text-align:center"></h1>
+		<p style="text-align:center">Write a message in the field below to chat with others in this channel! :)</p>
+		<input type="text" id="meddelande">
+		<button type="submit" id="sendButton" onclick="sendMessage(getElementById('meddelande').value)">Send</button>
+		<div id="message_north">north</div>
+		<div id="message_west">west</div>
+		<div id="message_south">south</div>
+		<div id="message_east">east</div>
+
     <script type="text/javascript">
 
-		var pubnubDemo = new PubNub({
-		publishKey: 'pub-c-02c1869a-f2fe-4f32-ae53-e7cca5c20e04',
-		subscribeKey: 'sub-c-352e2e98-6800-11e9-b514-6a4d3cd75da8'
-		});
+    var pubnubDemo = new PubNub({
+    publishKey: 'pub-c-02c1869a-f2fe-4f32-ae53-e7cca5c20e04',
+    subscribeKey: 'sub-c-352e2e98-6800-11e9-b514-6a4d3cd75da8'
+    });
 
       pubnubDemo.addListener({
         message: function(message){
           console.log(message.message.message)
           console.log(message.channel)
-          console.log("10.message_" + message.channel);
+          console.log("11.message_" + message.channel);
           var node = document.createElement("P");
           var textnode = document.createTextNode(message.message.message);
           node.appendChild(textnode);
@@ -44,15 +57,13 @@
         channels: ['north', 'south', 'west', 'east']
       });
 
-		var field = "";
+    var field = "";
 
     function sendMessage(input){
 
       pubnubDemo.publish({
         message: { "message" : input },
         channel: field });
-
-
 
     }
 
@@ -78,44 +89,44 @@
       // Green for North and South, black otherwise
       if ((heading >= 0 && heading < 45) || (heading <= 360 && heading >= 315)) { //Allow +- 1 degree
         document.body.style.backgroundColor = "purple";
-				field = "north";
+        field = "north";
         document.getElementById("heading").innerHTML = "You are now in the North channel";
 
-				// pubnubDemo.publish({
-				// 	message: { "color" : "green" },
-				// 	channel: 'north' });
-		    }
+        // pubnubDemo.publish({
+        // 	message: { "color" : "green" },
+        // 	channel: 'north' });
+        }
 
 
       else if (heading >= 45 && heading < 135){
-				document.body.style.backgroundColor = "pink";
+        document.body.style.backgroundColor = "pink";
         field = "east";
-				document.getElementById("heading").innerHTML = "You are now in the East channel"; // South
+        document.getElementById("heading").innerHTML = "You are now in the East channel"; // South
         console.log("this is: " + field);
 
         // pubnubDemo.publish({
-				// 	message: { "color" : "pink" },
-				// 	channel: 'east' });
-			 }
+        // 	message: { "color" : "pink" },
+        // 	channel: 'east' });
+       }
 
       else if (heading >= 135 && heading < 225){ //Allow +- 1 degree
         document.body.style.backgroundColor = "yellow";
         field = "south";
         document.getElementById("heading").innerHTML = "You are now in the South channel"; // South
-				// pubnubDemo.publish({
-				// 	message: { "color" : "yellow" },
-				// 	channel: 'south' });
-				}
+        // pubnubDemo.publish({
+        // 	message: { "color" : "yellow" },
+        // 	channel: 'south' });
+        }
 
-			else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
-				document.body.style.backgroundColor = "blue";
+      else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
+        document.body.style.backgroundColor = "blue";
         field = "west";
-				document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
+        document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
 
-				// pubnubDemo.publish({
-				// 	message: { "color" : "red" },
-				// 	channel: 'west' });
-				}
+        // pubnubDemo.publish({
+        // 	message: { "color" : "red" },
+        // 	channel: 'west' });
+        }
 
       else { // Otherwise, use near black
         document.body.style.backgroundColor = "#161616";
@@ -134,18 +145,5 @@
       alert("Sorry, try again on a compatible mobile device!");
     }
     </script>
-  </head>
-  <body>
-    <br><br>
-    <h1 id="heading" style="text-align:center"></h1>
-		<p style="text-align:center">Write a message in the field below to chat with others in this channel! :)</p>
-		<form>
-			<input type="text" id="meddelande">
-			<button type="submit" id="sendButton" onclick="sendMessage(getElementById('meddelande').value)">Send</button>
-		</form>
-		<div id="message_north"></div>
-		<div id="message_west"></div>
-		<div id="message_south"></div>
-		<div id="message_east"></div>
   </body>
 </html>
