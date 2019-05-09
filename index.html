@@ -46,7 +46,7 @@
           message: function(message){
             console.log(message.message.message)
             console.log(message.channel)
-            console.log("13.message_" + message.channel);
+            console.log("15.message_" + message.channel);
             var node = document.createElement("P");
             var textnode = document.createTextNode(message.message.message);
             node.appendChild(textnode);
@@ -89,8 +89,10 @@
 
         // Change backgroud colour based on heading
         // Green for North and South, black otherwise
-        if ((heading >= 0 && heading < 45) || (heading <= 360 && heading >= 315)) { //Allow +- 1 degree
-          document.getElementById("message_north").innerHTML = "";
+        if (heading >= 0 && heading < 90) { //Allow +- 1 degree
+          document.getElementById("message_east").innerHTML = "";
+          document.getElementById("message_south").innerHTML = "";
+          document.getElementById("message_west").innerHTML = "";
           document.body.style.backgroundColor = "purple";
           field = "north";
           document.getElementById("heading").innerHTML = "You are now in the North channel";
@@ -101,8 +103,10 @@
           }
 
 
-        else if (heading >= 45 && heading < 135){
-          document.getElementById("message_east").innerHTML = "";
+        else if (heading >= 90 && heading < 180){
+          document.getElementById("message_west").innerHTML = "";
+          document.getElementById("message_south").innerHTML = "";
+          document.getElementById("message_north").innerHTML = "";
           document.body.style.backgroundColor = "pink";
           field = "east";
           document.getElementById("heading").innerHTML = "You are now in the East channel"; // South
@@ -113,8 +117,10 @@
           // 	channel: 'east' });
          }
 
-        else if (heading >= 135 && heading < 225){ //Allow +- 1 degree
-          document.getElementById("message_south").innerHTML = "";
+        else if (heading >= 180 && heading < 270){ //Allow +- 1 degree
+          document.getElementById("message_east").innerHTML = "";
+          document.getElementById("message_west").innerHTML = "";
+          document.getElementById("message_north").innerHTML = "";
           document.body.style.backgroundColor = "yellow";
           field = "south";
           document.getElementById("heading").innerHTML = "You are now in the South channel"; // South
@@ -123,8 +129,10 @@
           // 	channel: 'south' });
           }
 
-        else if (heading >= 225 && heading < 315){ //Allow +- 1 degree
-          document.getElementById("message_west").innerHTML = "";
+        else if (heading >= 270 && heading < 360){ //Allow +- 1 degree
+          document.getElementById("message_east").innerHTML = "";
+          document.getElementById("message_south").innerHTML = "";
+          document.getElementById("message_north").innerHTML = "";
           document.body.style.backgroundColor = "blue";
           field = "west";
           document.getElementById("heading").innerHTML = "You are now in the West channel"; // South
