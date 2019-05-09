@@ -42,7 +42,7 @@
 		var field = "";
 
     function sendMessage(input){
-
+      console.log("field: " + field);
       document.getElementById("message_" + field).innerHTML = input;
 
       pubnubDemo.publish({
